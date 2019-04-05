@@ -6,8 +6,13 @@ class Http(object):
         self.http = urllib3.PoolManager()
         self.url = url
 
-    def connect(self):
+    def getConnection(self):
         return self.http.request('GET', self.url)
 
+    def postConnection(self, url, fields):
+        http = self.http.request('POST', url, headers={
+                                 'Content-Type': 'application/json'}, body=fields)
+        return http.data
+
     def getData(self):
-        return self.connect().data
+        return self.getConnection().data
