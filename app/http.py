@@ -8,3 +8,6 @@ class Http(object):
 
     def connect(self):
         return self.http.request('GET', self.url)
+
+    def getData(self):
+        return self.connect().data
