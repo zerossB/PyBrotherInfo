@@ -1,9 +1,11 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
-import settings as st
+import app.settings as st
 
 # Based: https://gist.github.com/dtanham/11326557
+
+
 class Mail(object):
     def __init__(self):
         if st.EMAIL_HOST == "" or st.EMAIL_PORT:

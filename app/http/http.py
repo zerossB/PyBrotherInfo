@@ -1,18 +1,16 @@
 import urllib3
+import json
 
 
 class Http(object):
-    def __init__(self, url):
+    def __init__(self):
         self.http = urllib3.PoolManager()
-        self.url = url
 
-    def getConnection(self):
-        return self.http.request('GET', self.url)
+    def getConnection(self, url):
+        return self.http.request('GET', url)
 
     def postConnection(self, url, fields):
+        fields = json.dumps(fields)
         http = self.http.request('POST', url, headers={
                                  'Content-Type': 'application/json'}, body=fields)
-        return http.data
-
-    def getData(self):
-        return self.getConnection().data
+        return http
