@@ -1,6 +1,6 @@
 # Email Configuration
-EMAIL_HOST = "email-ssl.com.br"
-EMAIL_PORT = 465
+EMAIL_HOST = "<you url or ip SMTP server>"
+EMAIL_PORT = 000
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "tec@ceramicastefani.com.br"
-EMAIL_HOST_PASS = "st20cr30"
+EMAIL_HOST_USER = "<your email>"
+EMAIL_HOST_PASS = "<your password>"
