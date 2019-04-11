@@ -1,8 +1,13 @@
+from app.http import Http
+
 from bs4 import BeautifulSoup
 
 
 class DeviceStatus(object):
-    def __init__(self, data):
+    def __init__(self, url):
+        self.httpd = Http()
+        data = self.httpd.getConnection(
+            "http://"+url+"/general/status.html").data
         self.data = BeautifulSoup(data, "html.parser")
 
     def getTonerLevel(self):

@@ -1,9 +1,13 @@
+from app.http import Http
+
 from bs4 import BeautifulSoup
 
 
 class DeviceInformation(object):
-    def __init__(self, data):
-        
+    def __init__(self, url):
+        self.httpd = Http()
+        data = self.httpd.getConnection(
+            "http://"+url+"/general/information.html?kind=item").data
         self.data = BeautifulSoup(data, "html.parser")
         self.keys = []
         self.values = []
