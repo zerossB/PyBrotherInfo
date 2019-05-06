@@ -13,7 +13,7 @@ class Mail(object):
             raise NotImplementedError(
                 "EMAIL_HOST ou EMAIL_PORT não configurados no settings.py")
         self.server = smtplib.SMTP(
-            st.EMAIL_HOST, st.EMAIL_PORT
+            host=st.EMAIL_HOST, port=st.EMAIL_PORT
         )
 
     def send(self, to, subject, message, content_type):
@@ -26,9 +26,10 @@ class Mail(object):
         msg.attach(content)
 
         try:
-            self.server.login(st.EMAIL_HOST_USER, st.EMAIL_HOST_PASS)
+            self.server.ehlo()
             if st.EMAIL_USE_TLS:
                 self.server.starttls()
+            self.server.login(st.EMAIL_HOST_USER, st.EMAIL_HOST_PASS)
             self.server.sendmail(
                 st.EMAIL_HOST_USER, to, msg.as_string()
             )
@@ -36,6 +37,8 @@ class Mail(object):
             print(ex)
         finally:
             self.server.quit()
+        
+        print("> Enviado com sucesso!")
 
     def sendHTML(self, to, subject, message):
         return self.send(to, subject, message, "html")

@@ -1,0 +1,17 @@
+{% extends 'email.html' %}
+
+{% block content %}
+
+<p>Localização Impressora: {{ status.getDeviceLocalization() }}</p>
+<p>Status da Impressora: {{ status.getDeviceStatus()[0] }} | {{ status.getDeviceStatus()[1] }}</p>
+
+<hr>
+
+<h3>Status da Impressora</h3>
+<p>Contador de Páginas: {{ info.getPageCouter() }}</p>
+<p>Porcentagem de Cartucho: {{ info.getDrumUnit() }}</p>
+<p>Porcentagem do Fusor: {{ info.getFuserUnit()[1] }}</p>
+<p>Porcentagem do Laser: {{ info.getLaserUnit()[1] }}</p>
+
+
+{% endblock %}
