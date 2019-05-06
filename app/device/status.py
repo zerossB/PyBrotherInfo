@@ -16,7 +16,7 @@ class DeviceStatus(object):
 
     def getDeviceLocalization(self):
         localization = self.data.find('li', {'class': 'location'})
-        return localization.text
+        return localization.text[9:]
 
     def getDeviceContact(self):
         localization = self.data.find('li', {'class': 'contact'})
